@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block titulo %}Servicios | Gestión{% endblock %}
+
+{% block contenido %}<div class="page-header">
+    <h2>Servicios Disponibles</h2>
+    <a href="{% url 'app_serv_emp:crear_servicio' %}" class="btn btn-primary">+ Agregar Servicio</a></div><ul class="artist-grid">
+    {% for servicio in servicios %}
+    <li class="artist-card">
+        <a href="{% url 'app_serv_emp:detalle_servicio' servicio.id_servicio %}">
+            <div class="artist-placeholder">💸</div>
+            <h3>{{ servicio.nombre_servicio }}</h3>
+            <p class="artist-nationality">Precio: ${{ servicio.precio_base }}</p>
+        </a>
+    </li>
+    {% empty %}
+    <li class="no-artists">No hay servicios registrados.</li>
+    {% endfor %}</ul>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>{% block titulo %}Gestión de Servicios y Personal{% endblock %}</title> 
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="main-header">
+            <h1><a href="{% url 'app_serv_emp:listar_servicios' %}">🛠️ Servicios y Personal</a></h1> 
+            <nav class="main-nav">
+                <a href="{% url 'app_serv_emp:listar_servicios' %}">📋 Servicios</a> 
+                <a href="{% url 'app_serv_emp:crear_servicio' %}">➕ Nuevo Servicio</a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            {% block contenido %}{% endblock %}
+        </main>
+
+        <footer class="main-footer">
+            <p>© 2025 Gestión de Servicios - Aplicación educativa de Django</p>
+        </footer>
+    </div>
+</body>
+</html>

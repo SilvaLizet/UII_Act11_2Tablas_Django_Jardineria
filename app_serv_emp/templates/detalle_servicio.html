@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block titulo %}{{ servicio.nombre_servicio }} | Detalle{% endblock %}
+
+{% block contenido %}
+<article class="artist-detail">
+    <div class="artist-banner">
+        <div class="detail-placeholder">🏷️</div>
+        <div class="artist-info">
+            <h1>{{ servicio.nombre_servicio }}</h1>
+            <h3>Precio Base: ${{ servicio.precio_base }}</h3>
+        </div>
+    </div>
+
+    <div class="detail-actions">
+        <a href="{% url 'app_serv_emp:editar_servicio' servicio.id_servicio %}" class="btn btn-secondary">✏️ Editar</a>
+        <a href="{% url 'app_serv_emp:borrar_servicio' servicio.id_servicio %}" class="btn btn-danger">🗑️ Borrar</a>
+    </div>
+
+    <section class="songs-section">
+        <h2>Detalles del Servicio</h2>
+        <ul class="song-list">
+            <li>**Descripción:** {{ servicio.descripcion_servicio }}</li>
+            <li>**Duración Estimada:** {{ servicio.duracion_estimada }}</li>
+            <li>**Materiales Requeridos:** {{ servicio.materiales_requeridos|default:"N/A" }}</li>
+        </ul>
+
+        <h2 style="margin-top: 1.5rem;">Empleados Asignados</h2>
+        {% if servicio.empleados.all %} 
+        <ul class="song-list">
+            {% for empleado in servicio.empleados.all %}
+            <li>{{ empleado.nombre_empleado }} {{ empleado.apellido_empleado }} ({{ empleado.puesto_empleado }})</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="empty-message">No hay empleados asignados a este servicio.</p>
+        {% endif %}
+    </section>
+</article>
+{% endblock %}

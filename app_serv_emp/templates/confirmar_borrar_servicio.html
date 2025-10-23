@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block titulo %}Eliminar Servicio | Gestión{% endblock %}
+
+{% block contenido %}
+<h2>¿Estás seguro de que quieres borrar el servicio "{{ servicio.nombre_servicio }}"?</h2>
+<p>Esta acción no se puede deshacer. Los empleados asignados a este servicio serán desvinculados.</p>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="actions">
+        <button type="submit" class="btn btn-danger">Sí, Borrar</button>
+        <a href="{% url 'app_serv_emp:detalle_servicio' servicio.id_servicio %}" class="btn">Cancelar</a> 
+    </div>
+</form>
+{% endblock %}
